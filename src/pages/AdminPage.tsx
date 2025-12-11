@@ -1,8 +1,14 @@
 // src/pages/AdminPage.tsx
+<<<<<<< HEAD
 import { useEffect, useState, } from "react";
 import { useAuth } from "../AuthContext";
 import { apiUrl } from "../api";
 import type { FormEvent } from "react";
+=======
+import { useEffect, useState, FormEvent } from "react";
+import { useAuth } from "../AuthContext";
+import { apiUrl } from "../api";
+>>>>>>> b47e675c9b8ef703254ebcb4a9a7ed0a58fe17ad
 
 type Doctor = {
   id: number;
