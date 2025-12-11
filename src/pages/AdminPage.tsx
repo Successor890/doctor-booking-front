@@ -1,14 +1,7 @@
-// src/pages/AdminPage.tsx
-<<<<<<< HEAD
-import { useEffect, useState, } from "react";
-import { useAuth } from "../AuthContext";
-import { apiUrl } from "../api";
+import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
-=======
-import { useEffect, useState, FormEvent } from "react";
 import { useAuth } from "../AuthContext";
 import { apiUrl } from "../api";
->>>>>>> b47e675c9b8ef703254ebcb4a9a7ed0a58fe17ad
 
 type Doctor = {
   id: number;
@@ -35,8 +28,7 @@ export default function AdminPage() {
   const [name, setName] = useState("");
   const [specialization, setSpecialization] = useState("");
   const [city, setCity] = useState("");
-  const [consultationType, setConsultationType] =
-    useState("IN_PERSON");
+  const [consultationType, setConsultationType] = useState("IN_PERSON");
   const [consultationFee, setConsultationFee] = useState("");
   const [rating, setRating] = useState("");
 
@@ -44,8 +36,7 @@ export default function AdminPage() {
   const [createError, setCreateError] = useState<string | null>(null);
   const [createSuccess, setCreateSuccess] = useState<string | null>(null);
 
-  const [selectedDoctorId, setSelectedDoctorId] =
-    useState<number | null>(null);
+  const [selectedDoctorId, setSelectedDoctorId] = useState<number | null>(null);
   const [slotStart, setSlotStart] = useState("");
   const [slotEnd, setSlotEnd] = useState("");
   const [slotCreating, setSlotCreating] = useState(false);
@@ -82,9 +73,7 @@ export default function AdminPage() {
     try {
       setSlotsLoading(true);
       setSlotsError(null);
-      const res = await fetch(
-        apiUrl(`/api/doctors/${doctorId}/slots`)
-      );
+      const res = await fetch(apiUrl(`/api/doctors/${doctorId}/slots`));
       if (!res.ok) throw new Error("Failed to load slots");
       const data: Slot[] = await res.json();
       setSlots(data);
@@ -210,15 +199,12 @@ export default function AdminPage() {
     if (!confirm("Delete this doctor and all their slots/bookings?")) return;
 
     try {
-      const res = await fetch(
-        apiUrl(`/api/admin/doctors/${id}`),
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await fetch(apiUrl(`/api/admin/doctors/${id}`), {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (!res.ok) {
         const text = await res.text();
         throw new Error(text || "Failed to delete doctor");
@@ -243,9 +229,7 @@ export default function AdminPage() {
 
     try {
       const res = await fetch(
-        apiUrl(
-          `/api/admin/doctors/${selectedDoctorId}/slots/${slotId}`
-        ),
+        apiUrl(`/api/admin/doctors/${selectedDoctorId}/slots/${slotId}`),
         {
           method: "DELETE",
           headers: {
@@ -461,7 +445,9 @@ export default function AdminPage() {
               disabled={slotCreating || !selectedDoctorId}
               className="button-primary"
             >
-              <span>{slotCreating ? "Creating slot..." : "Create Slot"}</span>
+              <span>
+                {slotCreating ? "Creating slot..." : "Create Slot"}
+              </span>
             </button>
           </form>
           {slotError && <p style={{ color: "red" }}>{slotError}</p>}

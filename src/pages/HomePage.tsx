@@ -20,7 +20,7 @@ type BookingItem = {
 export default function HomePage() {
   const { user } = useAuth();
   const isPatient = user?.role === "PATIENT";
-  const email = user?.email ?? null;
+  const email = user?.email ?? "";
 
   const [nextBooking, setNextBooking] = useState<BookingItem | null>(null);
   const [nextLoading, setNextLoading] = useState(false);
@@ -73,7 +73,10 @@ export default function HomePage() {
   }, [isPatient, email]);
 
   return (
-    <div className="card" style={{ padding: 0, overflow: "hidden", borderRadius: "14px" }}>
+    <div
+      className="card"
+      style={{ padding: 0, overflow: "hidden", borderRadius: "14px" }}
+    >
       {isPatient && (
         <div style={{ padding: "0.9rem 1.6rem 0 1.6rem" }}>
           <h3 style={{ margin: "0 0 0.4rem 0" }}>Your next appointment</h3>
@@ -166,7 +169,7 @@ export default function HomePage() {
             <div>
               <div style={{ fontSize: "0.8rem", opacity: 0.85 }}>Email</div>
               <div style={{ fontWeight: 600 }}>
-                care@citycarehospital.com
+                [care@citycarehospital.com](mailto:care@citycarehospital.com)
               </div>
             </div>
           </div>
